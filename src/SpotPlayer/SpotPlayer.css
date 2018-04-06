@@ -1,0 +1,41 @@
+.outerContainer{
+    width: 4em;
+    height: 4em;
+}
+
+
+.innerContainer{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: url("./music.svg") no-repeat;
+    background-size: cover;
+    white-space: nowrap;
+    overflow: hidden;
+    -webkit-transition: 1000ms;
+    -moz-transition: 1000ms;
+    -ms-transition: 1000ms;
+    -o-transition: 1000ms;
+    transition: 1000ms;
+}
+
+.isPlay{
+    -webkit-animation: rotate10s infinite linear;
+    -o-animation: rotate 10s infinite linear;
+    animation: rotate 10s infinite linear;
+}
+
+.innerContainer:hover{
+    cursor: pointer;
+}
+
+@keyframes rotate {
+    100% {
+        -webkit-transform: rotate(1turn);
+        -moz-transform: rotate(1turn);
+        -ms-transform: rotate(1turn);
+        -o-transform: rotate(1turn);
+        transform: rotate(1turn);
+    }
+}
