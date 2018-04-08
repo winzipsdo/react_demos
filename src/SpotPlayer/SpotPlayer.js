@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './SpotPlayer.css';
+import './SpotPlayer.scss';
 
 export default class SpotPlayer extends Component {
     constructor(props) {
