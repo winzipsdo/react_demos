@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
-import './SpotPlayer.scss';
+import style from './SpotPlayer.css';
 
+//autoPlay = {false}
+//loop = {true}
+//music = {music_path}
 export default class SpotPlayer extends Component {
     constructor(props) {
         super(props);
@@ -30,7 +33,7 @@ export default class SpotPlayer extends Component {
         let innerTransform = getComputedStyle(innerContainer).transform;
 
         audio.pause();
-        innerContainer.classList.remove('isPlay');
+        innerContainer.classList.remove(style.isPlay);
         outerContainer.style.transform = outerTransform === 'none'
             ? innerTransform
             : innerTransform.concat(outerTransform);
@@ -38,7 +41,7 @@ export default class SpotPlayer extends Component {
 
     audioPlay() {
         this.refs.audio.play();
-        this.refs.innerContainer.classList.add('isPlay');
+        this.refs.innerContainer.classList.add(style.isPlay);
     }
 
     handleDoubleClick(){
@@ -48,24 +51,24 @@ export default class SpotPlayer extends Component {
     }
 
     handleToggle() {
-        if (this.state.isPlay) {
-            this.audioPause()
-        } else {
-            this.audioPlay()
-        }
-
         this.setState({
             isPlay: !this.state.isPlay
+        },()=>{
+            if (!this.state.isPlay) {
+                this.audioPause()
+            } else {
+                this.audioPlay()
+            }
         });
     }
 
     render() {
         return (
             <div ref='outerContainer'
-                 className='outerContainer'
+                 className={style.outerContainer}
                  onClick={this.handleToggle}
                  onDoubleClick={this.handleDoubleClick}>
-                <div ref='innerContainer' className='innerContainer'>
+                <div ref='innerContainer' className={style.innerContainer}>
                     <audio ref="audio"
                            loop={this.state.loop}>
                         <source src={this.props.music || null}/>

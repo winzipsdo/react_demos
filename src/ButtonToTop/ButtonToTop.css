@@ -1,0 +1,10 @@
+.btn-primary{
+    height: 2em;
+    width: 2em;
+    background-color: red;
+}
+
+.btn-primary:hover{
+    cursor: pointer;
+}
+
