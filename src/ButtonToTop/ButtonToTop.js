@@ -8,7 +8,7 @@ export default class ButtonToTop extends Component{
 
     render(){
         return(
-            <div className={style["btn-primary"]}>123</div>
+            <div className={style["btn-primary"]}></div>
         )
     }
 }
