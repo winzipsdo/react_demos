@@ -1,6 +1,10 @@
 .outerContainer{
     width: 4em;
     height: 4em;
+    position: fixed;
+    right: 0;
+    top: 0;
+    margin: 1em 1em 0 0;
 }
 
 
