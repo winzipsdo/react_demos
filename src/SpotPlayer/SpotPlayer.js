@@ -20,22 +20,26 @@ export default class SpotPlayer extends Component {
     }
 
     audioPause() {
-        let audio = this.refs.audio;
-        let outerContainer = this.refs.outerContainer;
-        let outerTransform = getComputedStyle(outerContainer).transform;
-        let innerContainer = this.refs.innerContainer;
-        let innerTransform = getComputedStyle(innerContainer).transform;
+        this.setState({isPlay:false},()=>{
+            let audio = this.refs.audio;
+            let outerContainer = this.refs.outerContainer;
+            let outerTransform = getComputedStyle(outerContainer).transform;
+            let innerContainer = this.refs.innerContainer;
+            let innerTransform = getComputedStyle(innerContainer).transform;
 
-        audio.pause();
-        innerContainer.classList.remove(style.isPlay);
-        outerContainer.style.transform = outerTransform === 'none'
-            ? innerTransform
-            : innerTransform.concat(outerTransform);
+            audio.pause();
+            innerContainer.classList.remove(style.isPlay);
+            outerContainer.style.transform = outerTransform === 'none'
+                ? innerTransform
+                : innerTransform.concat(outerTransform);
+        });
     }
 
     audioPlay() {
-        this.refs.audio.play();
-        this.refs.innerContainer.classList.add(style.isPlay);
+        this.setState({isPlay:true},()=>{
+            this.refs.audio.play();
+            this.refs.innerContainer.classList.add(style.isPlay);
+        });
     }
 
     handleDoubleClick(){
@@ -45,15 +49,11 @@ export default class SpotPlayer extends Component {
     }
 
     handleToggle() {
-        this.setState({
-            isPlay: !this.state.isPlay
-        },()=>{
-            if (!this.state.isPlay) {
-                this.audioPause()
-            } else {
-                this.audioPlay()
-            }
-        });
+        if (this.state.isPlay){
+            this.audioPause();
+        } else {
+            this.audioPlay();
+        }
     }
 
     render() {
