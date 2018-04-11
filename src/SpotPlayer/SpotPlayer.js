@@ -63,6 +63,9 @@ export default class SpotPlayer extends Component {
     }
 
     render() {
+        const {loop} = this.state;
+        const {music} = this.props;
+
         return (
             <div ref='outerContainer'
                  className={style.outerContainer}
@@ -70,8 +73,8 @@ export default class SpotPlayer extends Component {
                  onDoubleClick={this.handleDoubleClick}>
                 <div ref='innerContainer' className={style.innerContainer}>
                     <audio ref="audio"
-                           loop={this.state.loop}>
-                        <source src={this.props.music || null}/>
+                           loop={loop}>
+                        <source src={music || null}/>
                         您的浏览器版本过低。
                     </audio>
                 </div>
