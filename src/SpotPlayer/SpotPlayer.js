@@ -1,17 +1,11 @@
 import React, {Component} from 'react';
 import style from './SpotPlayer.css';
 
-//autoPlay = {false}
-//loop = {true}
-//music = {music_path}
 export default class SpotPlayer extends Component {
     constructor(props) {
         super(props);
-        const autoPlay = this.props.autoPlay ? this.props.autoPlay : false;
         this.state = {
-            isPlay: autoPlay,
-            autoPlay: autoPlay,
-            loop: true
+            isPlay:props.autoPlay
         };
         this.handleToggle = this.handleToggle.bind(this);
         this.audioPlay = this.audioPlay.bind(this);
@@ -63,9 +57,7 @@ export default class SpotPlayer extends Component {
     }
 
     render() {
-        const {loop} = this.state;
-        const {music} = this.props;
-
+        const {music,loop} = this.props;
         return (
             <div ref='outerContainer'
                  className={style.outerContainer}
@@ -81,4 +73,10 @@ export default class SpotPlayer extends Component {
             </div>
         );
     }
+
 }
+
+SpotPlayer.defaultProps = {//在此设置props的默认值
+    autoPlay:false,
+    loop:true
+};

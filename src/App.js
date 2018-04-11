@@ -7,8 +7,7 @@ class App extends Component {
     render() {
         return (
             <div>
-                <SpotPlayer music={music}
-                            loop={true}/>
+                <SpotPlayer music={music}/>
                 <ButtonToTop/>
             </div>
         );
