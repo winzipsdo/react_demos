@@ -5,7 +5,7 @@ export default class SpotPlayer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isPlay:props.autoPlay
+            isPlay: props.autoPlay
         };
         this.handleToggle = this.handleToggle.bind(this);
         this.audioPlay = this.audioPlay.bind(this);
@@ -14,13 +14,17 @@ export default class SpotPlayer extends Component {
     }
 
     componentDidMount() {
-        if (this.props.autoPlay){
+        if (this.props.autoPlay) {
             this.audioPlay();
         }
     }
 
+    componentWillReceiveProps() {
+        // todo
+    }
+
     audioPause() {
-        this.setState({isPlay:false},()=>{
+        this.setState({isPlay: false}, () => {
             let audio = this.refs.audio;
             let outerContainer = this.refs.outerContainer;
             let outerTransform = getComputedStyle(outerContainer).transform;
@@ -32,39 +36,42 @@ export default class SpotPlayer extends Component {
             outerContainer.style.transform = outerTransform === 'none'
                 ? innerTransform
                 : innerTransform.concat(outerTransform);
+
+            this.props.onPlayStateChange(this.state.isPlay);
         });
     }
 
     audioPlay() {
-        this.setState({isPlay:true},()=>{
+        this.setState({isPlay: true}, () => {
             this.refs.audio.play();
             this.refs.innerContainer.classList.add(style.isPlay);
+            this.props.onPlayStateChange(this.state.isPlay);
         });
     }
 
-    handleDoubleClick(){
-        let audio = this.refs.audio;
-        audio.currentTime = 0;
+    handleDoubleClick() {
+        this.refs.audio.currentTime = 0;
         this.audioPlay();
     }
 
     handleToggle() {
-        if (this.state.isPlay){
+        if (this.state.isPlay) {
             this.audioPause();
         } else {
             this.audioPlay();
         }
+
     }
 
     render() {
-        const {music,loop} = this.props;
+        const {music, loop} = this.props;
         return (
             <div ref='outerContainer'
                  className={style.outerContainer}
                  onClick={this.handleToggle}
                  onDoubleClick={this.handleDoubleClick}>
                 <div ref='innerContainer' className={style.innerContainer}>
-                    <audio ref="audio"
+                    <audio ref='audio'
                            loop={loop}>
                         <source src={music || null}/>
                         您的浏览器版本过低。
@@ -77,6 +84,7 @@ export default class SpotPlayer extends Component {
 }
 
 SpotPlayer.defaultProps = {//在此设置props的默认值
-    autoPlay:false,
-    loop:true
+    autoPlay: false,
+    loop: true,
+    onPlayStateChange: isPlay => isPlay//对外接口，返回当前播放器的播放状态
 };
