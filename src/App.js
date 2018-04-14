@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import music from './media/乔杉 - 塑料袋.flac';
 import SpotPlayer from './SpotPlayer/SpotPlayer';
 import ButtonToTop from './ButtonToTop/ButtonToTop';
+import SpotLoading from './SpotLoading/SpotLoading';
+import Content from './Content/Content';
+import poems from './global_content';
 
 class App extends Component {
     constructor(props){
@@ -39,9 +42,7 @@ class App extends Component {
     }
 
     handlePlayerToggle(){
-        this.setState((prevState)=>({
-            playerAutoPlay: !prevState.playerAutoPlay
-        }));
+        this.refs.loading.loading();
     }
 
     render() {
@@ -49,8 +50,10 @@ class App extends Component {
         return (
             <div>
                 <button onClick={this.handlePlayerToggle}>Button!</button>
-                <SpotPlayer ref="audio" autoPlay={this.state.playerAutoPlay} music={music}/>
-                <ButtonToTop/>
+                <SpotLoading ref='loading' />
+                <Content paras={poems} />
+                <SpotPlayer ref="audio" autoPlay={this.state.playerAutoPlay} music={music} />
+                <ButtonToTop />
             </div>
         );
     }
