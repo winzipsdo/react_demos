@@ -4,44 +4,44 @@ import SpotPlayer from './SpotPlayer/SpotPlayer';
 import ButtonToTop from './ButtonToTop/ButtonToTop';
 import SpotLoading from './SpotLoading/SpotLoading';
 import Content from './Content/Content';
-import poems from './global_content';
+import {poems} from './global_content';
 
 class App extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            playerAutoPlay:props.playerAutoPlay,
-            test:0
+            playerAutoPlay: props.playerAutoPlay,
+            test: 0
         };
         this.handlePlayerToggle = this.handlePlayerToggle.bind(this);
         console.log("constructor");
     }
 
-    componentWillMount(){
+    componentWillMount() {
         console.log("will mount");
     }
 
-    componentDidMount(){
+    componentDidMount() {
         console.log("did mount");
     }
 
-    componentWillReceiveProps(){
+    componentWillReceiveProps() {
         console.log("will receive props");
     }
 
-    componentWillUpdate(){
+    componentWillUpdate() {
         console.log("component will update");
     }
 
-    componentDidUpdate(){
+    componentDidUpdate() {
         console.log("component did update");
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         console.log("componentWillUnmount");
     }
 
-    handlePlayerToggle(){
+    handlePlayerToggle() {
         this.refs.loading.loading();
     }
 
@@ -50,10 +50,10 @@ class App extends Component {
         return (
             <div>
                 <button onClick={this.handlePlayerToggle}>Button!</button>
-                <SpotLoading ref='loading' />
-                <Content paras={poems} />
-                <SpotPlayer ref="audio" autoPlay={this.state.playerAutoPlay} music={music} />
-                <ButtonToTop />
+                <SpotLoading ref='loading'/>
+                <Content paras={poems}/>
+                <SpotPlayer ref="audio" autoPlay={this.state.playerAutoPlay} music={music}/>
+                <ButtonToTop/>
             </div>
         );
     }
