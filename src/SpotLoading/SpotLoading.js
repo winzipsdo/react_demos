@@ -31,6 +31,7 @@ export default class SpotLoading extends Component {
     loading() {
         this.curtain.style.height = String(document.documentElement.clientHeight) + "px";
         document.body.appendChild(this.curtain);
+        // setTimeout(this.unload,2000);//test line
     }
 
     unload() {
