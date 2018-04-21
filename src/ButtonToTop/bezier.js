@@ -13,7 +13,7 @@ export default function cubic_bezier(ratio, x1, y1, x2, y2) {
         + spotB.x * ratio ** 3 * 3
         + spotC.x * ratio ** 2 * 3
         - spotC.x * ratio ** 3 * 3
-        + spotD.x * ratio ** 3 ,
+        + spotD.x * ratio ** 3,
         y: spotA.y
         - spotA.y * ratio ** 1 * 3
         + spotA.y * ratio ** 2 * 3
