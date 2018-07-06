@@ -8,7 +8,7 @@
 
 .para{
     position: relative;
-    transition: color 0.5s, 2s;
+    transition: color 0.5s, 5s;
     z-index: 0;
 }
 

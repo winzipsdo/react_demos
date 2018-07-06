@@ -20,8 +20,8 @@ export default class Content extends Component{
         for (let i = 0; i<para.length;i++){
             let height = scrollTop + viewPortHeight - para[i].offsetTop;
             if (height > 0){
-                para[i].style.backgroundColor = 'red';
-            } else {
+                para[i].style.backgroundColor = '#D1D0AE';
+            } else {//可不用恢复default
                 para[i].style.backgroundColor = 'inherit';
             }
         }
